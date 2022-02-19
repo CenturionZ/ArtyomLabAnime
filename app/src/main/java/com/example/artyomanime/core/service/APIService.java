@@ -6,20 +6,21 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 import java.util.List;
+import io.reactivex.Observable;
 
 public interface APIService {
 
     /** Возвращает список Аниме */
     @GET("quotes")
-    Call<List<AnimeQuote>> getAvailableAnimes();
+    Observable<List<AnimeQuote>> getAvailableAnimes();
 
     /** Возвращает Аниме, найденное по названию */
     @GET("quotes/anime")
     Call<AnimeQuote> getAnimeByTitle(@Query("title") String animeTitle);
 
     /** Возвращает рандомное Аниме */
-    @GET("assets/random")
-    Call<AnimeQuote> getRandomAnime();
+    @GET("random")
+    Observable<AnimeQuote> getRandomAnime();
 
 }
 

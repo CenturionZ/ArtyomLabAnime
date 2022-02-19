@@ -4,11 +4,13 @@ import android.util.Log;
 import com.example.artyomanime.core.MainContract;
 import com.example.artyomanime.core.models.AnimeQuote;
 import com.example.artyomanime.core.service.RetrofitInstance;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Repository implements MainContract.Repository {
@@ -20,50 +22,21 @@ public class Repository implements MainContract.Repository {
     }
 
     @Override
-    public List<AnimeQuote> GetAnimeList() {
-        final List<AnimeQuote> set = new ArrayList<>();
-        Call<List<AnimeQuote>> call = retrofitClient.retrofitAPI.getAvailableAnimes();
-
-        call.enqueue(new Callback<List<AnimeQuote>>() {
-            @Override
-            public void onResponse(Call<List<AnimeQuote>> call, Response<List<AnimeQuote>> response) {
-                assert response.body() != null;
-                set.addAll(response.body());
-                call.cancel();
-            }
-
-            @Override
-            public void onFailure(Call<List<AnimeQuote>> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
-        for (AnimeQuote item : set) {
-            Log.d("ITEM check", item.getAnime());
-        }
-        return set;
+    public Observable<List<AnimeQuote>> GetAnimeList() {
+        return retrofitClient
+                .retrofitAPI
+                .getAvailableAnimes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public AnimeQuote GetRandomAnime() {
-        final AnimeQuote anime = new AnimeQuote();
-        Call<AnimeQuote> call = retrofitClient.retrofitAPI.getRandomAnime();
-
-        call.enqueue(new Callback<AnimeQuote>() {
-            @Override
-            public void onResponse(Call<AnimeQuote> call, Response<AnimeQuote> response) {
-                anime.setAnime(response.body().getAnime());
-                anime.setCharacter(response.body().getCharacter());
-                anime.setQuote(response.body().getQuote());
-            }
-
-            @Override
-            public void onFailure(Call<AnimeQuote> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
-        return anime;
+    public Observable<AnimeQuote> GetRandomAnime() {
+        return retrofitClient
+                .retrofitAPI
+                .getRandomAnime()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override

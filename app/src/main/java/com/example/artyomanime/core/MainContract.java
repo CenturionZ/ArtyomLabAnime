@@ -1,35 +1,36 @@
 package com.example.artyomanime.core;
 
 import com.example.artyomanime.core.models.AnimeQuote;
+import io.reactivex.Observable;
 
 import java.util.List;
 
 public interface MainContract {
 
     interface ItemViewFragment{
-        void SetTitlesList();
-        void SwitchToDetailInfo();
+        void DisplayTitlesList(List<AnimeQuote> animeTitle);
     }
 
     interface DetailViewFragment{
-        void SetDetailData();
+        void DisplayDetailInfo();
     }
 
     interface MainActivityView {
         void ReloadTitlesList();
-        void GetRandomeTitle();
+        void GetRandomTitle(AnimeQuote anime);
     }
 
     interface Presenter {
-        List<AnimeQuote> GetAnimeList();
-        AnimeQuote GetRandomAnime();
+        void GetAnimeList();
+        void GetRandomAnime();
+        void ReloadItemFragment();
         AnimeQuote GetAnimeByTitle(String animeTitle);
     }
 
 
     interface Repository {
-        List<AnimeQuote> GetAnimeList();
-        AnimeQuote GetRandomAnime();
+        Observable<List<AnimeQuote>> GetAnimeList();
+        Observable<AnimeQuote> GetRandomAnime();
         AnimeQuote GetAnimeByTitle(String animeTitle);
     }
 

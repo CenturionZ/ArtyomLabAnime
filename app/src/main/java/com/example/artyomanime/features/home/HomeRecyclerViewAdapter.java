@@ -1,4 +1,4 @@
-package com.example.artyomanime.home;
+package com.example.artyomanime.features.home;
 
 import android.util.Log;
 import androidx.recyclerview.widget.RecyclerView;
