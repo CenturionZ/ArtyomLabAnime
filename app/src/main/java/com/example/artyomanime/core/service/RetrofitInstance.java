@@ -26,18 +26,6 @@ public class RetrofitInstance {
         }
     }
 
-    /** Возвращает созданный клиент, с привязанными к нему end-points
-     * (ссылками API, описанными в APIService)
-     * @see APIService
-     * @return возвращает готовый Retrofit-клиент
-     */
-//    public APIService getService() {
-//        if (retrofit == null) {
-//            retrofit = CreateRetrofitClient();
-//        }
-//        return retrofit.create(APIService.class);
-//    }
-
     /** Создает и возвращает HTTP-клиент с логированием
      * Необходим для клиента Retrofit
      * @return возвращает объект httpOk, HTTP-клиент с логированием

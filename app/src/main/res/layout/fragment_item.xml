@@ -5,6 +5,7 @@
               android:orientation="vertical"
               android:elevation="2dp"
               android:background="@drawable/bottom_border"
+              android:id="@+id/item_title"
               android:outlineAmbientShadowColor="@color/colorPrimaryDark">
 
     <TextView

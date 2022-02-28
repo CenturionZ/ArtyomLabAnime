@@ -1,6 +1,5 @@
 package com.example.artyomanime;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import com.example.artyomanime.core.MainContract;
 import com.example.artyomanime.core.models.AnimeQuote;
 import com.example.artyomanime.features.deatil.DetailFragment;
 import com.example.artyomanime.features.home.ItemFragment;
-import com.example.artyomanime.features.home.Presenter;
 
 public class MainActivity extends AppCompatActivity implements MainContract.MainActivityView {
 

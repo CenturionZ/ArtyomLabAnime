@@ -1,4 +1,4 @@
-package com.example.artyomanime.features.home;
+package com.example.artyomanime;
 
 import android.util.Log;
 import com.example.artyomanime.core.MainContract;
